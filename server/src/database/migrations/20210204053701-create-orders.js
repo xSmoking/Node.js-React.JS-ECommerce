@@ -19,13 +19,6 @@ module.exports = {
         allowNull: true,
         defaultValue: 'opened',
       },
-      total: {
-        type: Sequelize.FLOAT,
-        length: 4,
-        decimals: 2,
-        allowNull: false,
-        defaultValue: 0.0,
-      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

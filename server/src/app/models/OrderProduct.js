@@ -6,9 +6,11 @@ class OrderProduct extends Model {
       {
         order_id: Sequelize.INTEGER,
         product_id: Sequelize.INTEGER,
+        price: Sequelize.FLOAT,
       },
       {
         sequelize,
+        timestamps: false,
       }
     );
   }

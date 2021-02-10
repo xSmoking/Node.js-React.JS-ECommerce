@@ -21,6 +21,18 @@ module.exports = {
         onDelete: 'CASCADE',
         allowNull: false,
       },
+      price: {
+        type: Sequelize.FLOAT,
+        length: 4,
+        decimals: 2,
+        defaultValue: 0,
+        allowNull: false,
+      },
+      quantity: {
+        type: Sequelize.INTEGER,
+        defaultValue: 1,
+        allowNull: false,
+      },
     });
   },
 

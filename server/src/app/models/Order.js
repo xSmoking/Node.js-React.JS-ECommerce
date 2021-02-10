@@ -4,9 +4,8 @@ class Order extends Model {
   static init(sequelize) {
     super.init(
       {
-        user_id: Sequelize.INTEGER,
+        // user_id: Sequelize.INTEGER,
         status: Sequelize.INTEGER,
-        total: Sequelize.FLOAT,
       },
       {
         sequelize,
