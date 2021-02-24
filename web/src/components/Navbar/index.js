@@ -11,12 +11,9 @@ import { Nav } from './styles';
 
 const Navbar = () => {
   return (
-    <Nav
-      activeKey="/home"
-      onSelect={selectedKey => alert(`selected ${selectedKey}`)}
-    >
+    <Nav activeKey="/home">
       <Nav.Item>
-        <Nav.Link href="/home">
+        <Nav.Link href="/">
           <FaHome /> <span>Início</span>
         </Nav.Link>
       </Nav.Item>
