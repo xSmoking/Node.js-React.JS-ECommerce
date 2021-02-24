@@ -3,6 +3,17 @@ import User from '../models/User';
 import Order from '../models/Order';
 
 class UserController {
+  async index(req, res) {
+    const user = await User.findByPk(req.userId);
+
+    if (user.rank_id < 2) {
+      return res.status(401).json({ error: 'Não autorizado' });
+    }
+
+    const users = await User.findAll();
+    return res.json(users);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
@@ -71,18 +82,7 @@ class UserController {
     return res.json({ id, name, email, rank_id });
   }
 
-  async findAll(req, res) {
-    const user = await User.findByPk(req.userId);
-
-    if (user.rank_id < 2) {
-      return res.status(401).json({ error: 'Não autorizado' });
-    }
-
-    const users = await User.findAll();
-    return res.json(users);
-  }
-
-  async findOne(req, res) {
+  async show(req, res) {
     const user = await User.findByPk(req.userId);
 
     if (user.rank_id < 2 && Number(req.userId) !== Number(req.params.id)) {

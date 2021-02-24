@@ -1,55 +1,76 @@
 import styled from 'styled-components';
+import MultiCarousel from 'react-multi-carousel/lib/Carousel';
 
-export const Container = styled.div`
-  max-width: 700px;
-  background: #fff;
-  border-radius: 4px;
-  padding: 20px;
-  margin: 80px auto;
+export const Products = styled.div`
+  margin: 20px 0 40px 0;
+  color: #666;
+  padding: 0 30px;
 
-  h1 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  h3 {
+    a {
+      margin-left: 10px;
+      font-size: 18px;
 
-    svg {
-      margin-right: 10px;
+      svg {
+        vertical-align: -10%;
+      }
     }
   }
+`;
 
-  a {
-    text-decoration: none;
-    color: blue;
+export const ItemCarousel = styled(MultiCarousel)`
+  margin-top: 20px;
+
+  .card {
+    display: inline-block !important;
+    height: 450px;
+  }
+
+  .card-body {
+    vertical-align: bottom;
+
+    .card-title {
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .card-text {
+      color: #666;
+      font-size: 14px;
+      text-align: center;
+
+      span {
+        margin-left: 5px;
+        font-size: 26px;
+        font-weight: bold;
+        color: #06a2ff;
+      }
+    }
+
+    div {
+      text-align: center;
+    }
+
+    button {
+      border-radius: 50px;
+      display: inline-block;
+
+      svg {
+        vertical-align: -10%;
+        margin-right: 7px;
+      }
+    }
   }
 `;
 
-export const Form = styled.form`
-  margin-top: 30px;
-  display: flex;
-  flex-direction: row;
+export const CardImage = styled.div`
+  text-align: center;
+  height: 300px;
 
-  input {
-    flex: 1;
-    border: 1px solid #ddd;
-    padding: 10px 15px;
-    border-radius: 4px;
+  img {
+    max-height: 300px !important;
+    max-width: 100% !important;
+    width: auto !important;
+    padding: 10px;
   }
 `;
-
-export const SubmitButton = styled.button.attrs({ type: 'submit' })`
-  background: #00a7ca;
-  border: 0;
-  padding: 0 15px;
-  margin-left: 10px;
-  border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-
-  svg {
-    margin-right: 10px;
-  }
-`;
-
-export const Table = styled.table``;

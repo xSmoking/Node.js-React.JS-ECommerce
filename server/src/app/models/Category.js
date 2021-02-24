@@ -13,6 +13,10 @@ class Category extends Model {
       }
     );
   }
+
+  static associate(models) {
+    this.hasMany(models.ProductCategory, { foreignKey: 'category_id' });
+  }
 }
 
 export default Category;

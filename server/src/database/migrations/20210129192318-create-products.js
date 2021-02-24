@@ -28,6 +28,14 @@ module.exports = {
         defaultValue: 0.0,
         allowNull: false,
       },
+      image: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
+      image_base64: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,

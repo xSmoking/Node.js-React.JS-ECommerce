@@ -2,6 +2,12 @@ import * as Yup from 'yup';
 import Rank from '../models/Rank';
 
 class RankController {
+  async index(req, res) {
+    await Rank.findAll().then(orders => {
+      res.json(orders);
+    });
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       label: Yup.string().required(),
@@ -36,13 +42,7 @@ class RankController {
     return res.json({ id, label });
   }
 
-  async findAll(req, res) {
-    await Rank.findAll().then(orders => {
-      res.json(orders);
-    });
-  }
-
-  async findOne(req, res) {
+  async show(req, res) {
     const rank = await Rank.findByPk(req.params.id);
 
     return res.json(rank);

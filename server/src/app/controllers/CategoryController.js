@@ -2,6 +2,12 @@ import * as Yup from 'yup';
 import Category from '../models/Category';
 
 class CategoryController {
+  async index(req, res) {
+    await Category.findAll().then(categories => {
+      res.json(categories);
+    });
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       code: Yup.string().required(),
@@ -38,13 +44,7 @@ class CategoryController {
     return res.json({ id, label });
   }
 
-  async findAll(req, res) {
-    await Category.findAll().then(categories => {
-      res.json(categories);
-    });
-  }
-
-  async findOne(req, res) {
+  async show(req, res) {
     const category = await Category.findByPk(req.params.id);
 
     return res.json(category);
