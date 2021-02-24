@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
-import {
-  FaShoppingBag,
-  FaSearch,
-  FaCoffee,
-  FaUtensils,
-  FaPaw,
-  FaIceCream,
-  FaPlus,
-} from 'react-icons/fa';
+import { FaPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { Carousel, Form, FormControl, Button, Card } from 'react-bootstrap/';
+import { Carousel, Button, Card } from 'react-bootstrap/';
 
 import api from '../../services/api';
 
-import { Topbar, ShoppingBag } from '../../components/Topbar';
-import { Nav } from '../../components/Nav';
 import { ItemCarousel, Products, CardImage } from './styles';
 
 export default class Main extends Component {
@@ -72,56 +62,6 @@ export default class Main extends Component {
 
     return (
       <React.Fragment>
-        <Topbar>
-          <Topbar.Brand href="#home">
-            <FaShoppingBag /> Market
-          </Topbar.Brand>
-          <Topbar.Toggle aria-controls="basic-navbar-nav" />
-          <Topbar.Collapse id="basic-navbar-nav">
-            <Form inline>
-              <FormControl
-                type="text"
-                placeholder="Buscar um produto"
-                className="mr-sm-2"
-              />
-              <Button variant="outline-primary">
-                <FaSearch /> Buscar
-              </Button>
-            </Form>
-          </Topbar.Collapse>
-          <Topbar.Collapse className="justify-content-end">
-            <ShoppingBag>
-              <FaShoppingBag />
-            </ShoppingBag>
-          </Topbar.Collapse>
-        </Topbar>
-
-        <Nav
-          activeKey="/home"
-          onSelect={selectedKey => alert(`selected ${selectedKey}`)}
-        >
-          <Nav.Item>
-            <Nav.Link href="/home">
-              <FaUtensils /> <span>Alimentos</span>
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="link-1">
-              <FaPaw /> <span>Animais</span>
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="link-2">
-              <FaCoffee /> <span>Bebidas</span>
-            </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="link-2">
-              <FaIceCream /> <span>Guloseimas</span>
-            </Nav.Link>
-          </Nav.Item>
-        </Nav>
-
         <Carousel>
           <Carousel.Item>
             <img

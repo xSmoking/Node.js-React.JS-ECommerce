@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import BootstrapNavbar from 'react-bootstrap/Navbar';
 
-export const Topbar = styled(BootstrapNavbar).attrs(props => ({
+export const Topnav = styled(BootstrapNavbar).attrs(props => ({
   expand: 'md',
 }))`
   background: #f9f9f9;

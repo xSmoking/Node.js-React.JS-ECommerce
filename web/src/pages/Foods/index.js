@@ -5,9 +5,6 @@ import { Carousel, Form, FormControl, Button, Card } from 'react-bootstrap/';
 
 import api from '../../services/api';
 
-import { Topbar, ShoppingBag } from '../../components/Topbar';
-import { Nav } from '../../components/Nav';
-
 export default class Foods extends Component {
   state = {
     products: [],
@@ -22,10 +19,6 @@ export default class Foods extends Component {
   render() {
     const { products } = this.state;
 
-    return (
-      <React.Fragment>
-        <Topbar></Topbar>
-      </React.Fragment>
-    );
+    return <React.Fragment></React.Fragment>;
   }
 }
