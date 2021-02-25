@@ -5,7 +5,8 @@ import { Carousel, Button, Card } from 'react-bootstrap/';
 
 import api from '../../services/api';
 
-import { ItemCarousel, Products, CardImage } from './styles';
+import CardImage from '../../components/cardImage';
+import { ItemCarousel, Products } from './styles';
 
 export default class Main extends Component {
   state = {
@@ -82,7 +83,7 @@ export default class Main extends Component {
         <Products>
           <h3>
             Alimentos{' '}
-            <Link to="">
+            <Link to="/alimentos">
               <FaPlus /> Ver mais
             </Link>
           </h3>
