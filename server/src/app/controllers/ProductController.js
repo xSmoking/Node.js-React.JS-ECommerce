@@ -76,7 +76,7 @@ class ProductController {
   }
 
   async findByCategory(req, res) {
-    const limit = req.query.limit === undefined ? 0 : req.query.limit;
+    const limit = req.query.limit === undefined ? 1000 : req.query.limit;
     const products = await ProductCategory.findAll({
       where: { category_id: req.params.id },
       include: {
