@@ -19,5 +19,14 @@ export default createGlobalStyle`
 
   button{
     cursor: pointer;
+
+    svg{
+      margin-right: 7px !important;
+      vertical-align: -10%;
+    }
+  }
+
+  input{
+    padding: 10px 20px !important;
   }
 `;

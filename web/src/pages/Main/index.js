@@ -5,6 +5,7 @@ import { Carousel, Button, Card } from 'react-bootstrap/';
 
 import api from '../../services/api';
 
+import { formatPrice } from '../../util/format';
 import CardImage from '../../components/cardImage';
 import { ItemCarousel, Products } from './styles';
 
@@ -19,7 +20,12 @@ export default class Main extends Component {
 
   async componentDidMount() {
     api.get('/products/category/4?limit=15').then(response => {
-      this.setState({ foods: response.data });
+      const data = response.data.map(product => ({
+        ...product,
+        priceFormatted: formatPrice(product.product.price),
+      }));
+
+      this.setState({ foods: data });
     });
   }
 
@@ -98,11 +104,7 @@ export default class Main extends Component {
                   <Card.Title>{item.product.name}</Card.Title>
                   <Card.Text>
                     R$
-                    <span>
-                      {new Intl.NumberFormat('pr-BR').format(
-                        item.product.price
-                      )}
-                    </span>
+                    <span>{item.priceFormatted}</span>
                   </Card.Text>
                   <div>
                     <Button variant="outline-primary">
@@ -133,11 +135,7 @@ export default class Main extends Component {
                   <Card.Title>{item.product.name}</Card.Title>
                   <Card.Text>
                     R$
-                    <span>
-                      {new Intl.NumberFormat('pr-BR').format(
-                        item.product.price
-                      )}
-                    </span>
+                    <span>{item.priceFormatted}</span>
                   </Card.Text>
                   <div>
                     <Button variant="outline-primary">

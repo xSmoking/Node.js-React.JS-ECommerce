@@ -23,7 +23,7 @@ export const ItemCarousel = styled(MultiCarousel)`
 
   .card {
     display: inline-block !important;
-    height: 450px;
+    height: 460px;
   }
 
   .card-body {

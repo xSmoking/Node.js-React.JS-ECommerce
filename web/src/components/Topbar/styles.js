@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import BootstrapNavbar from 'react-bootstrap/Navbar';
+import BootstrapDropdown from 'react-bootstrap/Dropdown';
 
 export const Topnav = styled(BootstrapNavbar).attrs(props => ({
   expand: 'md',
@@ -42,4 +43,12 @@ export const ShoppingBag = styled.div`
   padding: 10px;
   color: #fff;
   border-radius: 10px;
+`;
+
+export const Dropdown = styled(BootstrapDropdown)`
+  margin-left: 20px;
+
+  svg {
+    margin-right: 7px;
+  }
 `;

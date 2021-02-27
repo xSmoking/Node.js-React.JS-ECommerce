@@ -4,6 +4,7 @@ import { Button, Card, Row, Col } from 'react-bootstrap/';
 
 import api from '../../services/api';
 
+import { formatPrice } from '../../util/format';
 import CardImage from '../../components/cardImage';
 import { Products } from './styles.js';
 
@@ -14,8 +15,12 @@ export default class Foods extends Component {
 
   async componentDidMount() {
     api.get('/products/category/4').then(response => {
-      this.setState({ products: response.data });
-      console.log(response.data);
+      const data = response.data.map(product => ({
+        ...product,
+        priceFormatted: formatPrice(product.price),
+      }));
+
+      this.setState({ products: data });
     });
   }
 
@@ -38,11 +43,7 @@ export default class Foods extends Component {
                     <Card.Title>{item.product.name}</Card.Title>
                     <Card.Text>
                       R$
-                      <span>
-                        {new Intl.NumberFormat('pr-BR').format(
-                          item.product.price
-                        )}
-                      </span>
+                      <span>{item.product.priceFormatted}</span>
                     </Card.Text>
                     <div>
                       <Button variant="outline-primary">
