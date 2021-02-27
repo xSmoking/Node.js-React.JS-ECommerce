@@ -20,7 +20,7 @@ class App {
   middlewares() {
     this.server.use(express.json());
     // this.server.use(express.json({ limit: '50mb' }));
-    this.server.use(express.urlencoded({ limit: '50mb', extended: false }));
+    this.server.use(express.urlencoded({ extended: false }));
     this.server.use(
       '/files',
       express.static(path.resolve(__dirname, '..', 'tmp', 'uploads'))

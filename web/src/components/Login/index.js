@@ -8,17 +8,32 @@ import { Button, Modal } from './styles';
 
 const Login = props => {
   const [isSending, setIsSending] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleEmailChange = e => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = e => {
+    setPassword(e.target.value);
+  };
 
   const sendRequest = useCallback(async () => {
-    // don't send again while we are sending
     if (isSending) return;
-    // update state
     setIsSending(true);
-    // send the actual request
-    await api.sendRequest();
-    // once the request is sent, update state again
+
+    api
+      .post('/sessions', {
+        email,
+        password,
+      })
+      .then(response => {
+        console.log(response.data);
+      });
+
     setIsSending(false);
-  }, [isSending]); // update the callback if the state changes
+  }, [email, isSending, password]);
 
   return (
     <Modal {...props}>
@@ -30,12 +45,22 @@ const Login = props => {
         <Form>
           <Form.Group controlId="formEmail">
             <Form.Label>E-mail</Form.Label>
-            <Form.Control type="email" placeholder="Digite seu e-mail" />
+            <Form.Control
+              type="email"
+              placeholder="Digite seu e-mail"
+              onChange={handleEmailChange}
+              value={email}
+            />
           </Form.Group>
 
           <Form.Group controlId="formPassword">
             <Form.Label>Senha</Form.Label>
-            <Form.Control type="password" placeholder="Digite sua senha" />
+            <Form.Control
+              type="password"
+              placeholder="Digite sua senha"
+              onChange={handlePasswordChange}
+              value={password}
+            />
           </Form.Group>
 
           <Button
