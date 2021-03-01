@@ -3,6 +3,7 @@ import 'dotenv/config';
 import Youch from 'youch';
 import express from 'express';
 import path from 'path';
+import cors from 'cors';
 import 'express-async-errors';
 
 import routes from './routes';
@@ -11,6 +12,7 @@ import './database';
 class App {
   constructor() {
     this.server = express();
+    this.server.use(cors());
 
     this.middlewares();
     this.routes();

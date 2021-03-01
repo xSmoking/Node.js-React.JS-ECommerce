@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import { FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 import { Form } from 'react-bootstrap/';
 
@@ -7,33 +7,35 @@ import api from '../../services/api';
 import { Button, Modal } from './styles';
 
 const Login = props => {
-  const [isSending, setIsSending] = useState(false);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [state, setState] = useState({
+    isSending: false,
+    email: '',
+    password: '',
+  });
 
   const handleEmailChange = e => {
-    setEmail(e.target.value);
+    setState({ email: e.target.value });
   };
 
   const handlePasswordChange = e => {
-    setPassword(e.target.value);
+    setState({ password: e.target.value });
   };
 
-  const sendRequest = useCallback(async () => {
-    if (isSending) return;
-    setIsSending(true);
+  const sendRequest = () => {
+    if (state.isSending) return;
+    setState({ isSending: true });
 
     api
       .post('/sessions', {
-        email,
-        password,
+        email: state.email,
+        password: state.password,
       })
       .then(response => {
         console.log(response.data);
       });
 
-    setIsSending(false);
-  }, [email, isSending, password]);
+    setState({ isSending: false });
+  };
 
   return (
     <Modal {...props}>
@@ -49,7 +51,7 @@ const Login = props => {
               type="email"
               placeholder="Digite seu e-mail"
               onChange={handleEmailChange}
-              value={email}
+              value={state.email}
             />
           </Form.Group>
 
@@ -59,13 +61,13 @@ const Login = props => {
               type="password"
               placeholder="Digite sua senha"
               onChange={handlePasswordChange}
-              value={password}
+              value={state.password}
             />
           </Form.Group>
 
           <Button
             variant="primary"
-            disabled={isSending}
+            disabled={state.isSending}
             className="btn-block"
             onClick={sendRequest}
           >
