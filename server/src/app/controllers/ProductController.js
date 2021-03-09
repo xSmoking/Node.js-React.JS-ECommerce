@@ -46,8 +46,6 @@ class ProductController {
   }
 
   async show(req, res) {
-    // const product = await Product.findOne(req.body.id);
-
     const product = await Product.findOne({
       where: { id: req.params.id },
     });
@@ -86,13 +84,15 @@ class ProductController {
           exclude: ['createdAt', 'updatedAt'],
         },
       },
-      attributes: {
-        exclude: ['product_id', 'category_id'],
-      },
       limit: Number(limit),
     });
 
-    return res.json(products);
+    const prods = [];
+    products.forEach(element => {
+      prods.push(element.product);
+    });
+
+    return res.json(prods);
   }
 }
 
