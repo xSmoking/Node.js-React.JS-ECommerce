@@ -33,17 +33,17 @@ export default class Foods extends Component {
           <h2>Alimentos</h2>
 
           <Row>
-            {products.map(item => (
-              <Col md={2} key={item.product.name}>
+            {products.map(product => (
+              <Col md={2} key={product.name}>
                 <Card style={{ width: '18rem' }}>
                   <CardImage>
-                    <Card.Img src={item.product.image} />
+                    <Card.Img src={product.image} />
                   </CardImage>
                   <Card.Body>
-                    <Card.Title>{item.product.name}</Card.Title>
+                    <Card.Title>{product.name}</Card.Title>
                     <Card.Text>
                       R$
-                      <span>{item.product.priceFormatted}</span>
+                      <span>{product.priceFormatted}</span>
                     </Card.Text>
                     <div>
                       <Button variant="outline-primary">

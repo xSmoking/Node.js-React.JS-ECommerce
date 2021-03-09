@@ -1,6 +1,5 @@
-import { Alert } from 'react-native'
 import { call, put, all, select, takeLatest } from 'redux-saga/effects';
-import NavigationService from '../../../services/navigation';
+// import NavigationService from '../../../services/navigation';
 
 import api from '../../../services/api';
 import { formatPrice } from '../../../util/format';
@@ -19,7 +18,7 @@ function* addToCart({ id }) {
   const amount = currentAmount + 1;
 
   if (amount > stockAmount) {
-    Alert.alert('Quantidade solicitada fora de estoque');
+    // Alert.alert('Quantidade solicitada fora de estoque');
     return;
   }
 
@@ -36,7 +35,7 @@ function* addToCart({ id }) {
 
     yield put(addToCartSuccess(data));
 
-    NavigationService.navigate('Cart')
+    // NavigationService.navigate('Cart');
 
     // history.push('/cart');
   }
@@ -49,7 +48,7 @@ function* updateAmount({ id, amount }) {
   const stockAmount = stock.data.amount;
 
   if (amount > stockAmount) {
-    Alert.alert('Quantidade solicitada fora de estoque');
+    // Alert.alert('Quantidade solicitada fora de estoque');
     return;
   }
 

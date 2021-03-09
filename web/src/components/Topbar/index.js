@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { FaShoppingBag, FaSearch, FaUser } from 'react-icons/fa';
 import { Form, FormControl, Button } from 'react-bootstrap/';
+import { Link } from 'react-router-dom';
 import { formatPrice } from '../../util/format';
 
 import Login from '../Login';
 import { Topnav, ShoppingBag, Dropdown } from './styles';
 
-const Topbar = () => {
+const Topbar = ({ navigation, cartSize }) => {
   const [showLogin, setShowLogin] = useState(false);
 
   return (
     <React.Fragment>
       <Topnav>
-        <Topnav.Brand href="#home">
+        <Topnav.Brand href="/#">
           <FaShoppingBag /> Market
         </Topnav.Brand>
         <Topnav.Toggle aria-controls="basic-navbar-nav" />
@@ -41,9 +43,10 @@ const Topbar = () => {
           </Dropdown>
         </Topnav.Collapse>
         <Topnav.Collapse className="justify-content-end">
+          <Link to="/carrinho">Cart</Link>
           <ShoppingBag>
             <FaShoppingBag />
-            R$ {formatPrice(0.0)}
+            R$ {formatPrice(0.0)} - {cartSize}
           </ShoppingBag>
         </Topnav.Collapse>
       </Topnav>
@@ -52,4 +55,8 @@ const Topbar = () => {
   );
 };
 
-export default Topbar;
+const mapStateToProps = state => ({
+  cartSize: state.cart.length,
+});
+
+export default connect(mapStateToProps)(Topbar);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { FaPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { Carousel, Button, Card } from 'react-bootstrap/';
@@ -9,7 +10,7 @@ import { formatPrice } from '../../util/format';
 import CardImage from '../../components/cardImage';
 import { ItemCarousel, Products } from './styles';
 
-export default class Main extends Component {
+class Main extends Component {
   state = {
     search: '',
     foods: [],
@@ -22,7 +23,7 @@ export default class Main extends Component {
     api.get('/products/category/4?limit=15').then(response => {
       const data = response.data.map(product => ({
         ...product,
-        priceFormatted: formatPrice(product.product.price),
+        priceFormatted: formatPrice(product.price),
       }));
 
       this.setState({ foods: data });
@@ -33,8 +34,16 @@ export default class Main extends Component {
     this.setState({ search: e.target.value });
   };
 
-  handleSearchSubmit = async e => {
+  handleSearchSubmit = e => {
     e.preventDefault();
+  };
+
+  handleAddProduct = product => {
+    const { dispatch } = this.props;
+    dispatch({
+      type: '@cart/ADD',
+      product,
+    });
   };
 
   render() {
@@ -95,19 +104,22 @@ export default class Main extends Component {
           </h3>
 
           <ItemCarousel responsive={responsive}>
-            {foods.map(item => (
-              <Card key={item.product.name} style={{ width: '18rem' }}>
+            {foods.map(product => (
+              <Card key={product.name} style={{ width: '18rem' }}>
                 <CardImage>
-                  <Card.Img src={item.product.image} />
+                  <Card.Img src={product.image} />
                 </CardImage>
                 <Card.Body>
-                  <Card.Title>{item.product.name}</Card.Title>
+                  <Card.Title>{product.name}</Card.Title>
                   <Card.Text>
                     R$
-                    <span>{item.priceFormatted}</span>
+                    <span>{product.priceFormatted}</span>
                   </Card.Text>
                   <div>
-                    <Button variant="outline-primary">
+                    <Button
+                      variant="outline-primary"
+                      onClick={() => this.handleAddProduct(product)}
+                    >
                       <FaPlus /> Adicionar
                     </Button>
                   </div>
@@ -126,19 +138,22 @@ export default class Main extends Component {
           </h3>
 
           <ItemCarousel responsive={responsive}>
-            {foods.map(item => (
-              <Card key={item.product.name} style={{ width: '18rem' }}>
+            {foods.map(product => (
+              <Card key={product.name} style={{ width: '18rem' }}>
                 <CardImage>
-                  <Card.Img src={item.product.image} />
+                  <Card.Img src={product.image} />
                 </CardImage>
                 <Card.Body>
-                  <Card.Title>{item.product.name}</Card.Title>
+                  <Card.Title>{product.name}</Card.Title>
                   <Card.Text>
                     R$
-                    <span>{item.priceFormatted}</span>
+                    <span>{product.priceFormatted}</span>
                   </Card.Text>
                   <div>
-                    <Button variant="outline-primary">
+                    <Button
+                      variant="outline-primary"
+                      onClick={() => this.handleAddProduct(product)}
+                    >
                       <FaPlus /> Adicionar
                     </Button>
                   </div>
@@ -151,3 +166,5 @@ export default class Main extends Component {
     );
   }
 }
+
+export default connect()(Main);

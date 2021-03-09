@@ -9,6 +9,7 @@ import OrderController from './app/controllers/OrderController';
 import RankController from './app/controllers/RankController';
 import CategoryController from './app/controllers/CategoryController';
 import FileController from './app/controllers/FileController';
+import CartController from './app/controllers/CartController';
 
 import authMiddleware from './app/middlewares/auth';
 import adminMiddleware from './app/middlewares/admin';
@@ -36,6 +37,8 @@ routes.get('/orders/:id', OrderController.findOne);
 routes.get('/orders/:id/products', OrderController.findProducts);
 
 routes.get('/products', ProductController.index);
+
+routes.post('/cart', CartController.store);
 
 routes.use(adminMiddleware);
 
